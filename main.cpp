@@ -23,49 +23,58 @@ bodega* bodegaTemp = new bodega();
 int contIngredientes=0;
 platos* platosTemp;
 
+
+
+
 int main()
 {
+        //Cargar
          ifstream infile("texto.txt");
          char temporal;
          string strTemporal="";
          int cont=0;
          ingredientes* temp;
+         
          do {
-         do {
-         infile>>temporal;
-         if (temporal!=';') {
-         strTemporal+=temporal;
-         }
-         } while(temporal!=';'&&temporal!='/');
-         cout<<strTemporal<<endl;
-         //cout<<temporal<<endl;
-         switch(cont){
+            do {
+                infile>>temporal;
+                if (temporal!=',' && temporal!='/') {
+                    strTemporal+=temporal;
+                }
+            } while(temporal!=',' && temporal!='/');
+            //cout<<strTemporal<<endl;
+        
+            switch(cont){
              case 0:
                 temp=new ingredientes;
                 temp->setNombre(strTemporal);
-
                 cont++;
              break;
              case 1:
-                
+                temp->setCantidad(atoi(strTemporal.c_str()));
                cont++;
              break;
              case 2:
-             cont++;
+                temp->setTipo(strTemporal.c_str());
+                cont++;
              break;
              case 3:
-
+                temp->setCantidadSabor(atoi(strTemporal.c_str()));
+                cont++;
+             break;
+             case 4:
+                temp->setDuracion(atoi(strTemporal.c_str()));
                 bodegaTemp->setIngredientres(temp);
                 cont=0;
-             
              break;
-             
-         }
-         strTemporal="";
+            }
+            strTemporal="";
          
          } while(temporal!='/');
          infile.close();
-        //cout<<"hola";
+        
+        //Fin cargar
+
         int opcion = -1;
         int* arr = NULL;
 
@@ -82,7 +91,7 @@ int main()
                 {
                         case 1:
                                ingredientesMet();
-                
+
                                 break;
                         case 2:
                                platosMet();
