@@ -1,0 +1,1 @@
+fresas,20,fruta,30,4;tocino,6,carne,56,4;zanahoria,5,verdura,76,4;/

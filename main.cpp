@@ -3,6 +3,9 @@
 #include "ingredientes.h"
 #include "platos.h"
 #include <vector>
+#include <fstream>
+#include <string>
+#include <cstring>
 using namespace std;
 using std::cout;
 using std::cin;
@@ -22,6 +25,47 @@ platos* platosTemp;
 
 int main()
 {
+         ifstream infile("texto.txt");
+         char temporal;
+         string strTemporal="";
+         int cont=0;
+         ingredientes* temp;
+         do {
+         do {
+         infile>>temporal;
+         if (temporal!=';') {
+         strTemporal+=temporal;
+         }
+         } while(temporal!=';'&&temporal!='/');
+         cout<<strTemporal<<endl;
+         //cout<<temporal<<endl;
+         switch(cont){
+             case 0:
+                temp=new ingredientes;
+                temp->setNombre(strTemporal);
+
+                cont++;
+             break;
+             case 1:
+                
+               cont++;
+             break;
+             case 2:
+             cont++;
+             break;
+             case 3:
+
+                bodegaTemp->setIngredientres(temp);
+                cont=0;
+             
+             break;
+             
+         }
+         strTemporal="";
+         
+         } while(temporal!='/');
+         infile.close();
+        //cout<<"hola";
         int opcion = -1;
         int* arr = NULL;
 
@@ -38,6 +82,7 @@ int main()
                 {
                         case 1:
                                ingredientesMet();
+                
                                 break;
                         case 2:
                                platosMet();
@@ -75,6 +120,7 @@ void ingredientesMet()
     switch(resp)
     {
         case '1':
+         
         cout<<"Nombre del Ingrediente: "<<endl;
         cin>>nombre;
         cout<<"Tipo de Ingrediente: "<<endl;
@@ -133,16 +179,16 @@ void platosMet(){
                 }else{
                     Vingredientes.push_back(bodegaTemp->Vingredientes[op]);
                 }
-                //cout<<"Agregara otra comida[y/n]:"<<endl;
-                //cin>>seguir;
-                /*
+                cout<<"Agregara otra comida[y/n]:"<<endl;
+                cin>>seguir;
+                
                 if(seguir=='y'|| seguir=='Y'){
                     bandera=true;
                 }else{
                     bandera=false;
                 }
             }while(bandera==true);
-            */
+            
             for(int i=0;Vingredientes.size();i++){
                if(i=0){
                    sabor=Vingredientes[i]->getCantidadSabor();
